@@ -1,0 +1,20 @@
+{
+    "Author": "Azure Automation Product Team",
+    "ContentSize": 5118,
+    "ContentUrl": "https://raw.githubusercontent.com/azureautomation/update-management-turn-off-vms/master/UpdateManagement-TurnOffVms.ps1",
+    "DownloadCount": 4396,
+    "Id": "Update-Management-Turn-Off-be60ed99",
+    "IsFederated": true,
+    "IsWorkflow": false,
+    "Popularity": 21,
+    "RaterCount": 1,
+    "Rating": 4.0,
+    "ReleaseDate": "2018-9-14T00:00:00",
+    "RunbookKind": 5,
+    "RunbookKindString": "PowerShell",
+    "Summary": "This is an example script for Update Management pre/post actions. It stops VMs which were started to install updates. It must be used in conjunction with UpdateManagement-TurnOnVMs. It requires the module \"ThreadJobs\"",
+    "Title": "Update Management - Turn Off VMs",
+    "UpdatedDate": "2018-9-22T00:00:00",
+    "Url": "https://github.com/azureautomation/update-management-turn-off-vms",
+    "UserTags": "Patching"
+}
