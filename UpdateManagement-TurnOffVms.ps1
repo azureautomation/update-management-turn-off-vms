@@ -124,12 +124,12 @@ $vmIds | ForEach-Object {
     Write-Output ("Subscription Id: " + $subscriptionId)
     $mute = Select-AzureRmSubscription -Subscription $subscriptionId
 
-    $vm = Get-AzureRmVM -ResourceGroupName $rg -Name $name -Status 
+    $vm = Get-AzureRmVM -ResourceGroupName $rg -Name $name -Status -DefaultProfile $mute
 
     $state = ($vm.Statuses[1].DisplayStatus -split " ")[1]
     if($state -in $stoppableStates) {
         Write-Output "Stopping '$($name)' ..."
-        $newJob = Start-ThreadJob -ScriptBlock { param($resource, $vmname) Stop-AzureRmVM -ResourceGroupName $resource -Name $vmname -Force} -ArgumentList $rg,$name 
+        $newJob = Start-ThreadJob -ScriptBlock { param($resource, $vmname, $sub) $context = Select-AzureRmSubscription -Subscription $sub; Stop-AzureRmVM -ResourceGroupName $resource -Name $vmname -Force -DefaultProfile $context} -ArgumentList $rg,$name,$subscriptionId
         $jobIDs.Add($newJob.Id)
     }else {
         Write-Output ($name + ": already stopped. State: " + $state) 
