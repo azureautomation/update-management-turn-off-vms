@@ -6,9 +6,7 @@ This script is intended to be run as a part of Update Management Pre/Post script
 
 It requires the ThreadJobs modules from the PowerShell gallery.
 
-UpdateManagement-TurnOffVms.ps1 requires a RunAs account.
-
-AzUpdateManagement-TurnOffVms.ps1 uses Az cmdlets and System Managed Identity. 
+UpdateManagement-TurnOffVms.ps1 uses Az cmdlets and System Managed Identity.
 
 It uses [Turn On VMs](https://gallery.technet.microsoft.com/Update-Management-Turn-On-ffadfc26) script
  as a pre-deployment script.
