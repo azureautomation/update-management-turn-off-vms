@@ -77,11 +77,11 @@ $runId = "PrescriptContext" + $context.SoftwareUpdateConfigurationRunId
 # In order to prevent asking for an Automation Account name and the resource group of that AA,
 # search through all the automation accounts in the subscription 
 # to find the one with a job which matches our job ID
-$AutomationResource = Get-AzResource -ResourceType Microsoft.Automation/AutomationAccounts
+$AutomationResource = Get-AzResource -ResourceType Microsoft.Automation/AutomationAccounts -DefaultProfile $AzureContext
 
 foreach ($Automation in $AutomationResource)
 {
-    $Job = Get-AzAutomationJob -ResourceGroupName $Automation.ResourceGroupName -AutomationAccountName $Automation.Name -Id $PSPrivateMetadata.JobId.Guid -ErrorAction SilentlyContinue
+    $Job = Get-AzAutomationJob -ResourceGroupName $Automation.ResourceGroupName -AutomationAccountName $Automation.Name -Id $PSPrivateMetadata.JobId.Guid -DefaultProfile $AzureContext -ErrorAction SilentlyContinue
     if (!([string]::IsNullOrEmpty($Job)))
     {
         $ResourceGroup = $Job.ResourceGroupName
@@ -144,4 +144,4 @@ foreach($id in $jobsList)
     }
 }
 #Clean up our variables:
-Remove-AzAutomationVariable -AutomationAccountName $AutomationAccount -ResourceGroupName $ResourceGroup -name $runID
+Remove-AzAutomationVariable -AutomationAccountName $AutomationAccount -ResourceGroupName $ResourceGroup -name $runID -DefaultProfile $AzureContext
